@@ -1,0 +1,92 @@
+record(stringin, "$(dev):Idn")
+{
+	field(DTYP, "stream")
+	field(INP, "@Keysight6812b.proto getIdn $(dev)")
+	field(PINI, "YES")
+	field(PROC, "0")
+}
+
+record(stringin, "$(dev):getvolt")
+{
+	field(DTYP, "stream")
+	field(INP, "@Keysight6812b.proto getvolt $(dev)")
+	field(PINI, "YES")
+}
+
+record(stringin, "$(dev):getvolt1")
+{
+	field(DTYP, "stream")
+	field(INP, "@Keysight6812b.proto getvolt $(dev)")
+	field(SCAN, "1 second")
+}
+
+record(stringin, "$(dev):geterror")
+{
+	field(DTYP, "stream")
+	field(INP, "@Keysight6812b.proto geterror $(dev)")
+	field(SCAN, "1 second")
+}
+
+record(stringin, "$(dev):getfreq")
+{
+	field(DTYP, "stream")
+	field(INP, "@Keysight6812b.proto getfreq $(dev)")
+	field(SCAN, "1 second")
+}
+
+record(ai, "$(dev):volt")
+{
+	field(DTYP, "stream")
+	field(VAL, 1)
+	field(INP, "@Keysight6812b.proto volt(VAL) $(dev)")
+	field(SCAN, "Passive")
+	field(PROC, "0")
+	field(HOPR, "70")
+	field(LOPR, "0")
+
+}
+
+record(ai, "$(dev):dcvolt")
+{
+	field(DTYP, "stream")
+	field(VAL, 1)
+	field(INP, "@Keysight6812b.proto dcvolt(VAL) $(dev)")
+	field(SCAN, "Passive")
+	field(PROC, "0")
+}
+
+record(ai, "$(dev):b")
+{
+	
+	field(VAL, 1)
+	field(SCAN, "Passive")
+	field(PROC, "0")
+	field(FLNK, "a")
+	field(HOPR, "0")
+	field(LOPR, "-50")
+}
+
+record(bi, "$(dev):output")
+{
+	field(DTYP, "stream")
+	field(VAL, 0)
+	field(INP, "@Keysight6812b.proto output(VAL) $(dev)")
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+}
+
+record(bi, "$(dev):coup")
+{
+	field(DTYP, "stream")
+	field(VAL, 0)
+	field(INP, "@Keysight6812b.proto coup(VAL) $(dev)")
+	field(SCAN, "Passive")
+}
+
+record(calcout,a)
+{
+	field(INPA, "$(dev):b")
+	field(CALC, "A*-1")
+	field(OUT,"$(dev):dcvolt PP")
+	field(OOPP, "1")
+}

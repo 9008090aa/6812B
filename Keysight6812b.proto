@@ -1,0 +1,49 @@
+Terminator = CR LF ;
+ReadTimeout = 1000;
+WriteTimeout = 1000;
+PollPeriod = 1000;
+ReplyTimeout = 1000;
+LockTimeout = 5000;
+ExtraInput = Ignore;
+
+getIdn {
+        out "*IDN?";
+        in "%100c";
+}
+
+getvolt{
+        out "MEASure:SCALar:VOLTage:AC?";
+        in "%100c";
+}
+
+getvolt1{
+        out "SOURce:VOLTage:LEVel:IMMediate:AMPLitude?";
+        in "%100c";
+}
+
+
+getfreq{
+        out "MEASure:SCALar:FREQuency?";
+        in "%100c";
+}
+
+geterror{
+        out "SYSTem:ERRor? ";
+        in "%100c";
+}
+
+volt{
+        out "SOURce:VOLTage:LEVel:IMMediate:AMPLitude %(\$1)d"
+}
+
+dcvolt{
+        out "SOURce:VOLTage:OFFSet:IMMediate %(\$1)d"
+}
+
+output{
+        out "OUTPut:STATe %(\$1)d"
+}
+
+coup{
+        out "OUTPut:COUPling %{AC|DC}";
+}
